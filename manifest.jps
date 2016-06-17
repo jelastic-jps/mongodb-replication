@@ -10,7 +10,7 @@
 		"version": "4.0",
 		"type": "php",
 		"homepage": "http://www.mongodb.org/",
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/MongoDbReplic/master/images/mongodb_70х70.png",
+		"logo": "https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/images/mongodb_70х70.png",
 		"description": {
 			"text": "Master-slave replication is used to solve performance problems, to support the db backups, and to alleviate system failures. It enables data from one database server (master) to be replicated to another (slave)"
 		},
@@ -64,13 +64,13 @@
 						"executeShellCommands": [{
 								"nodeId": "${nodes.nosqldb[1].id}",
 								"commands": [
-										"curl -sSfL \"https://raw.githubusercontent.com/jelastic-jps/MongoDbReplic/master/scripts/mongoReplication.sh\" -o /var/lib/mongo/replicScript.sh",
+										"curl -sSfL \"https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/scripts/mongoReplication.sh\" -o /var/lib/mongo/replicScript.sh",
 										"bash -x /var/lib/mongo/replicScript.sh slave ${nodes.nosqldb[1].address} ${nodes.nosqldb[0].address} 2>&1 1> /var/lib/mongo/replic.log"
 								]
 							}, {
 								"nodeId": "${nodes.nosqldb[0].id}",
 								"commands": [
-										"curl -sSfL \"https://raw.githubusercontent.com/jelastic-jps/MongoDbReplic/master/scripts/mongoReplication.sh\" -o /var/lib/mongo/replicScript.sh",
+										"curl -sSfL \"https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/scripts/mongoReplication.sh\" -o /var/lib/mongo/replicScript.sh",
 										"bash -x /var/lib/mongo/replicScript.sh master ${nodes.nosqldb[1].address} ${nodes.nosqldb[0].address} 2>&1 1> /var/lib/mongo/replic.log"
 								]
 							}
