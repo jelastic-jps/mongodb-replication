@@ -8,7 +8,7 @@ This package is designed to solve a number of different problems with performanc
 It enables data from one database server (the master) to be replicated to to another (the slave).
 This primary (the master) database will process all the incoming write operations, storing the information about them within its oplog, where they can be accessed and replicated by every secondary (the slave) replica member for being applied to their data sets. In such a way, all of the servers will represent the same content and ensure its availability.<br />
 
-###Environment Topology
+### Environment Topology
 
 ![mongodb-replication](images/mongodb-replication.png)
 
