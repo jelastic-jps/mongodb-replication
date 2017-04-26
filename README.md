@@ -10,7 +10,7 @@ This primary (the master) database will process all the incoming write operation
 
 ###Environment Topology
 
-![MongoDB Database Replication Topology](https://docs.google.com/drawings/d/1aO-l2iaL8NOb2xruqyvaHLdDPudjtYoXqEH7ir8xrs4/pub?w=277&h=97)
+![mongodb-replication](images/mongodb-replication.png)
 
 ### Specifics
 
