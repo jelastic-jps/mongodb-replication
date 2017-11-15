@@ -93,6 +93,6 @@
         ]
       }
     ],
-    "success": "The environment with multiple databases has been successfully created. The login and password of your database servers are sent to your email.\nPlease wait a minute for the replication settings to be completed. The process can be monitored in the <b>cron > mongod</b> file of your database servers. This file becomes empty when the configurations are finished. <br><br /> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${nodes.nosqldb.url}' target='_blank'>${nodes.nosqldb.url}/</a></td></tr></table><br />To add custom domain name for your Mongodb installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation<br />."
+    "success": "The environment with multiple databases has been successfully created. The login and password of your database servers are sent to your email.\nPlease wait a minute for the replication settings to be completed. The process can be monitored in the <b>cron > mongod</b> file of your database servers. This file becomes empty when the configurations are finished. <br><br /> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${nodes.nosqldb.url}' target='_blank'>${nodes.nosqldb.url}/</a></td></tr></table><br />To add custom domain name for your Mongodb installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation."
   }
 }
