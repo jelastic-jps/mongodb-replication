@@ -1,87 +1,98 @@
 {
-	"jpsType": "install",
-	"jpsVersion": "0.5",
-	"application": {
-		"id": "mongodbreplic",
-		"categories": [
-				"apps/clustered-dbs", "apps/clusters"
-		],
-		"name": "MongoDB Database Replication",
-		"version": "4.0",
-		"type": "php",
-		"homepage": "http://www.mongodb.org/",
-		"logo": "https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/images/mongodb_70х70.png",
-		"description": {
-			"text": "Master-slave replication is used to solve performance problems, to support the db backups, and to alleviate system failures. It enables data from one database server (master) to be replicated to another (slave)"
-		},
-		"env": {
-			"topology": {
-				"nodes": [{
-						"nodeType": "mongodb",
-						"count": 2,
-						"cloudlets": 16
-					}
-				]
-			}
-		},
-		"onInstall": {
-			"call": "configureReplication"
-		},
-		"procedures": [{
-				"id": "configureReplication",
-				"onCall": [{
-						"replaceInFile": [{
-								"nodeId": "${nodes.nosqldb[0].id}",
-								"path": "/etc/mongod.conf",
-								"replacements": [{
-										"pattern": "auth = true",
-										"replacement": "#auth = true"
-									}, {
-										"pattern": ".*noauth.*",
-										"replacement": "noauth = true"
-									}, {
-										"pattern": ".*noprealloc.*",
-										"replacement": "noprealloc=true"
-									}, {
-										"pattern": ".*replSet.*",
-										"replacement": "replSet=rs0\nport=27017"
-									}
-								]
-							}, {
-								"nodeId": "${nodes.nosqldb[1].id}",
-								"path": "/etc/mongod.conf",
-								"replacements": [{
-										"pattern": "auth = true",
-										"replacement": "#auth = true"
-									}, {
-										"pattern": ".*noauth.*",
-										"replacement": "noauth = true"
-									}
-								]
-							}
-						]
-					}, {
-						"executeShellCommands": [{
-								"nodeId": "${nodes.nosqldb[1].id}",
-								"commands": [
-										"curl -sSfL \"https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/scripts/mongoReplication.sh\" -o /var/lib/mongo/replicScript.sh",
-										"bash -x /var/lib/mongo/replicScript.sh slave ${nodes.nosqldb[1].address} ${nodes.nosqldb[0].address} 2>&1 1> /var/lib/mongo/replic.log"
-								]
-							}, {
-								"nodeId": "${nodes.nosqldb[0].id}",
-								"commands": [
-										"curl -sSfL \"https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/scripts/mongoReplication.sh\" -o /var/lib/mongo/replicScript.sh",
-										"bash -x /var/lib/mongo/replicScript.sh master ${nodes.nosqldb[1].address} ${nodes.nosqldb[0].address} 2>&1 1> /var/lib/mongo/replic.log"
-								]
-							}
-						]
-					}
-				]
-			}
-		],
-		"success": {
-			"text": "The environment with multiple databases has been successfully created. The login and password of your database servers are sent to your email.\nPlease wait a minute for the replication settings to be completed. The process can be monitored in the <b>cron > mongod</b> file of your database servers. This file becomes empty when the configurations are finished. <br><br /> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${nodes.mongodb.url}' target='_blank'>${nodes.mongodb.url}/</a></td></tr></table><br />To add custom domain name for your Mongodb installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation<br /><br />Connection to MongoDB - <a href='http://docs.jelastic.com/connection-to-mongodb' target='_blank'>documentation",
-			"email": "The environment with multiple databases has been successfully created. The login and password of your database servers are sent to your email.\nPlease wait a minute for the replication settings to be completed. The process can be monitored in the <b>cron > mongod</b> file of your database servers. This file becomes empty when the configurations are finished. <br><br /> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${nodes.mongodb.url}' target='_blank'>${nodes.mongodb.url}/</a></td></tr></table><br />To add custom domain name for your Mongodb installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation<br /><br />Connection to MongoDB - <a href='http://docs.jelastic.com/connection-to-mongodb' target='_blank'>documentation"
-		}
-	}
+  "jpsType": "install",
+  "jpsVersion": "0.5",
+  "application": {
+    "id": "mongodbreplic",
+    "categories" : [
+      "apps/clustered-dbs"
+    ,"apps/clusters"],
+    "name": "MongoDB Database Replication",
+    "version": "4.0",
+    "type": "php",
+    "homepage": "http://www.mongodb.org/",
+    "logo": "https://download.jelastic.com/public.php?service=files&t=c22609e0859f569f9a072bf84c5297df&download",
+    "description": {
+      "text": "Master-slave replication is used to solve performance problems, to support the db backups, and to alleviate system failures. It enables data from one database server (master) to be replicated to another (slave)"
+    },
+    "env": {
+      "topology": {
+        "nodes": [
+          {
+            "nodeType": "mongodb2",
+            "count": 2,
+            "cloudlets": 8
+          }
+        ]
+      }
+    },
+    "onInstall": {
+      "call": "configureReplication"
+    },
+    "procedures": [
+      {
+        "id": "configureReplication",
+        "onCall": [
+          {
+            "replaceInFile": [
+              {
+                "nodeId": "${nodes.nosqldb[0].id}",
+                "path": "/etc/mongod.conf",
+                "replacements": [
+                  {
+                    "pattern": "auth = true",
+                    "replacement": "#auth = true"
+                  },
+                  {
+                    "pattern": ".*noauth.*",
+                    "replacement": "noauth = true"
+                  },
+                  {
+                    "pattern": ".*noprealloc.*",
+                    "replacement": "noprealloc=true"
+                  },
+                  {
+                    "pattern": ".*replSet.*",
+                    "replacement": "replSet=rs0\nport=27017"
+                  }
+                ]
+              },
+              {
+                "nodeId": "${nodes.nosqldb[1].id}",
+                "path": "/etc/mongod.conf",
+                "replacements": [
+                  {
+                    "pattern": "auth = true",
+                    "replacement": "#auth = true"
+                  },
+                  {
+                    "pattern": ".*noauth.*",
+                    "replacement": "noauth = true"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "executeShellCommands": [
+              {
+                "nodeId": "${nodes.nosqldb[1].id}",
+                "commands": [
+                  "curl -sSfL \"https://download.jelastic.com/public.php?service=files&t=97dc4ca28816ca856fad3053612cf611&download\" -o /var/lib/mongo/replicScript.sh",
+                  "bash -x /var/lib/mongo/replicScript.sh slave ${nodes.nosqldb[1].address} ${nodes.nosqldb[0].address} 2>&1 1> /var/lib/mongo/replic.log"
+                ]
+              },
+              {
+                "nodeId": "${nodes.nosqldb[0].id}",
+                "commands": [
+                  "curl -sSfL \"https://download.jelastic.com/public.php?service=files&t=97dc4ca28816ca856fad3053612cf611&download\" -o /var/lib/mongo/replicScript.sh",
+                  "bash -x /var/lib/mongo/replicScript.sh master ${nodes.nosqldb[1].address} ${nodes.nosqldb[0].address} 2>&1 1> /var/lib/mongo/replic.log"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "success": "The environment with multiple databases has been successfully created. The login and password of your database servers are sent to your email.\nPlease wait a minute for the replication settings to be completed. The process can be monitored in the <b>cron > mongod</b> file of your database servers. This file becomes empty when the configurations are finished. <br><br /> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${nodes.nosqldb.url}' target='_blank'>${nodes.nosqldb.url}/</a></td></tr></table><br />To add custom domain name for your Mongodb installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation<br />."
+  }
 }
