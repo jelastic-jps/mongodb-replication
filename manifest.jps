@@ -18,7 +18,7 @@
       "topology": {
         "nodes": [
           {
-            "nodeType": "mongodb2",
+            "nodeType": "mongodb",
             "count": 2,
             "cloudlets": 8
           }
