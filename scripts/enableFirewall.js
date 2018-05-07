@@ -1,6 +1,6 @@
 //@req(enable)
 
-if (jelastic.environment.security.SetFirewallEnabled) {
+if (jelastic.environment.security) {
   return jelastic.environment.security.SetFirewallEnabled('${env.appid}', session, enable);
 }
 
