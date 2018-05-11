@@ -8,7 +8,7 @@
   ],
   "name": "MongoDB Database Replication",
   "homepage": "http://www.mongodb.org/",
-  "logo": "https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/images/mongodb_70%D1%8570.png",
+  "logo": "https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/images/mongodb_70х70.png",
   "description": "Master-slave replication is used to solve performance problems, to support the db backups, and to alleviate system failures. It enables data from one database server (master) to be replicated to another (slave)",
   "globals": {
     "replicaScript": "/var/lib/mongo/replicScript.sh",
