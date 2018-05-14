@@ -14,6 +14,7 @@
     "replicaScript": "/var/lib/mongo/replicScript.sh",
     "replicLog": "/var/lib/mongo/replic.log"
   },
+  "startPage": "${nodes.nosqldb.url}",
   "nodes": {
     "nodeType": "mongodb",
     "count": 2,
