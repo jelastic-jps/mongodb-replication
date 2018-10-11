@@ -31,7 +31,7 @@ EOF
 
 sleep 2
 mongo<< EOF
-    rs.add("${2}");
+    rs.add({ host: "${2}:27017", priority: 0, votes: 0 });
     cfg=rs.config();
     cfg.members[0].priority=2;
     cfg.members[0].host="${2}"
