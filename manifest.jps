@@ -1,5 +1,5 @@
 {
-  "jpsType": "install",
+  "type": "install",
   "version": "0.5",
   "id": "mongodbreplic",
   "categories": [
@@ -54,6 +54,16 @@
               {
                 "pattern": "authorization: enabled",
                 "replacement": "authorization: disabled"
+              }
+            ]
+          },
+          {
+            "nodeType": "mongodb",
+            "path": "/etc/mongod.conf",
+            "replacements": [
+              {
+                "pattern": "port: 27017",
+                "replacement": "port: 27017\n  bindIp: 0.0.0.0"
               }
             ]
           }
