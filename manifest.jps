@@ -76,13 +76,13 @@
       },
       {
         "cmd [${nodes.nosqldb[1].id}]": [
-          "curl -sSfL \"https://raw.githubusercontent.com/dzotic9/mongodb-replication/master/scripts/mongoReplication.sh\" -o ${globals.replicaScript}",
+          "curl -sSfL \"https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/scripts/mongoReplication.sh\" -o ${globals.replicaScript}",
           "bash -x ${globals.replicaScript} slave ${nodes.nosqldb[1].address} ${nodes.nosqldb[0].address} 2>&1 1>${globals.replicLog}"
         ]
       },
       {
         "cmd [${nodes.nosqldb[0].id}]": [
-          "curl -sSfL \"https://raw.githubusercontent.com/dzotic9/mongodb-replication/master/scripts/mongoReplication.sh\" -o ${globals.replicaScript}",
+          "curl -sSfL \"https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/scripts/mongoReplication.sh\" -o ${globals.replicaScript}",
           "bash -x ${globals.replicaScript} master ${nodes.nosqldb[1].address} ${nodes.nosqldb[0].address} 2>&1 1>${globals.replicLog}"
         ]
       },
