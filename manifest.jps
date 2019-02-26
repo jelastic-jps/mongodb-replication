@@ -6,7 +6,7 @@ categories:
   - apps/clusters
 name: MongoDB Database Replication
 homepage: http://www.mongodb.org/
-baseUrl: https://raw.githubusercontent.com/dzotic9/mongodb-replication/master/
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/
 logo: images/mongodb_70х70.png
 description: Master-slave replication is used to solve performance problems, to support the db backups, and to alleviate system failures. It enables data from one database server (master) to be replicated to another (slave)
 globals:
