@@ -1,23 +1,30 @@
 type: install
 version: '0.5'
 id: mongodbreplic
+
 categories:
   - apps/clustered-dbs
   - apps/clusters
+
 name: MongoDB Database Replication
 homepage: http://www.mongodb.org/
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/
 logo: images/mongodb_70х70.png
+
 description: Master-slave replication is used to solve performance problems, to support the db backups, and to alleviate system failures. It enables data from one database server (master) to be replicated to another (slave)
 globals:
   replicaScript: /var/lib/mongo/replicScript.sh
   replicLog: /var/lib/mongo/replic.log
+  
 startPage: ${nodes.nosqldb.url}
+
 nodes:
   nodeType: mongodb
   count: 2
   cloudlets: 8
+
 onInstall: configureReplication
+
 actions:
   configureReplication:
   - script: scripts/enableFirewall.js
@@ -58,6 +65,12 @@ actions:
     - bash -x ${globals.replicaScript} master ${nodes.nosqldb[1].address} ${nodes.nosqldb[0].address} 2>&1 1>${globals.replicLog}
   - script: scripts/enableFirewall.js
     enable: true
+
 success: |-
   The environment with multiple databases has been successfully created. The login and password of your database servers are sent to your email.
-  Please wait a minute for the replication settings to be completed. The process can be monitored in the <b>cron > mongod</b> file of your database servers. This file becomes empty when the configurations are finished. <br><br /> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${nodes.nosqldb.url}' target='_blank'>${nodes.nosqldb.url}/</a></td></tr></table><br />To add custom domain name for your Mongodb installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation.
+  Please wait a minute for the replication settings to be completed. The process can be monitored in the <b>cron > mongod</b> file of your database servers. This file becomes empty when the configurations are finished. <br><br />
+  <table style='font-size:13px; border: none;'>
+  <tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${nodes.nosqldb.url}' target='_blank'>${nodes.nosqldb.url}/</a></td></tr>
+  <tr><td>Password:</td><td style='padding-left: 10px;'>${nodes.nosqldb.password}</td></tr>
+  </table>
+  <br />To add custom domain name for your Mongodb installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation.
