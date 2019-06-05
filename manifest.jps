@@ -6,7 +6,7 @@ categories:
   - apps/clustered-dbs
   - apps/clusters
 
-name: MongoDB Database Replication
+name: MongoDB Cluster
 homepage: http://www.mongodb.org/
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/mongodb-replication/master/
 logo: images/mongodb_70х70.png
