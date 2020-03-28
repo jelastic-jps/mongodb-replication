@@ -1,3 +1,5 @@
+# Deprecated. Please refer to [the new repo](https://github.com/jelastic-jps/mongodb/).
+
 [![MongoDB Database Replication](images/mongodb-logo.png)](../../../mongodb-replication)
 ## MongoDB Database Replication
 
