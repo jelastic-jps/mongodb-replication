@@ -12,7 +12,10 @@ This primary (the master) database will process all the incoming write operation
 
 ### Environment Topology
 
-![mongodb-replication](images/mongodb-replication.png)
+<p align="left"> 
+<img src="images/mongodb.svg" width="500">
+</p>
+
 
 ### Specifics
 
